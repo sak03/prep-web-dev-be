@@ -8,7 +8,14 @@ const cors = require("cors")
 const userRoute = require('./routes/userRoute')
 const questionRoute = require('./routes/questionRoute');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
+
+// Use Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use(express.json())
+
 app.use(cors());
 
 
@@ -29,4 +36,5 @@ mongoose
 
 app.get("/", (req, res) => {
   res.send(`App is running on port number ${process.env.PORT}`);
+  // console.log('Swagger Docs are available on http://localhost:3000/api-docs');
 });

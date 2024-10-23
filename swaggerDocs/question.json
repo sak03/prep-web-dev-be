@@ -1,0 +1,91 @@
+{
+    "paths": {
+        "/api/questions/create": {
+            "post": {
+                "summary": "Create a new questions",
+                "tags": [
+                    "Questions"
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "mobile": {
+                                        "type": "string"
+                                    },
+                                    "userType": {
+                                        "type": "string"
+                                    },
+                                    "userStatus": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "dateOfBirth": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "city": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully"
+                    },
+                    "400": {
+                        "description": "Error creating user"
+                    }
+                }
+            }
+        },
+        "/api/questions/get": {
+            "get": {
+                "summary": "Get all questions",
+                "tags": [
+                    "Questions"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved list of questions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error retrieving users"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -24,12 +24,14 @@ const swaggerDefinition = {
 };
 
 const loadSwaggerDocs = () => {
+    const authDoc = JSON.parse(fs.readFileSync('./swaggerDocs/auth.json'));
     const userDoc = JSON.parse(fs.readFileSync('./swaggerDocs/user.json'));
     const questionDoc = JSON.parse(fs.readFileSync('./swaggerDocs/question.json'));
 
     return {
         ...swaggerDefinition,
         paths: {
+            ...authDoc.paths,
             ...userDoc.paths,
             ...questionDoc.paths
         }

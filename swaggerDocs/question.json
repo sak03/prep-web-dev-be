@@ -1,10 +1,157 @@
 {
     "paths": {
+        "/api/questions/get": {
+            "get": {
+                "summary": "Get all questions",
+                "tags": [
+                    "Questions"
+                ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved list of questions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "question": {
+                                                "type": "string"
+                                            },
+                                            "answer": {
+                                                "type": "string"
+                                            },
+                                            "category": {
+                                                "type": "string"
+                                            },
+                                            "subCatagory": {
+                                                "type": "string"
+                                            },
+                                            "isPrivate": {
+                                                "type": "boolean",
+                                                "default": false
+                                            },
+                                            "isBookmarked": {
+                                                "type": "boolean",
+                                                "default": false
+                                            },
+                                            "code": {
+                                                "type": "string"
+                                            },
+                                            "createdAt": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            },
+                                            "updatedAt": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error retrieving users"
+                    }
+                }
+            }
+        },
+        "/api/questions/get/{id}": {
+            "get": {
+                "summary": "Get question by id",
+                "tags": [
+                    "Questions"
+                ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The ID of the question to retrieve"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved list of questions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "question": {
+                                            "type": "string"
+                                        },
+                                        "answer": {
+                                            "type": "string"
+                                        },
+                                        "category": {
+                                            "type": "string"
+                                        },
+                                        "subCatagory": {
+                                            "type": "string"
+                                        },
+                                        "isPrivate": {
+                                            "type": "boolean",
+                                            "default": false
+                                        },
+                                        "isBookmarked": {
+                                            "type": "boolean",
+                                            "default": false
+                                        },
+                                        "code": {
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        },
+                                        "updatedAt": {
+                                            "type": "string",
+                                            "format": "date-time"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error retrieving users"
+                    }
+                }
+            }
+        },
         "/api/questions/create": {
             "post": {
                 "summary": "Create a new questions",
                 "tags": [
                     "Questions"
+                ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
                 ],
                 "requestBody": {
                     "required": true,
@@ -13,30 +160,39 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "name": {
+                                    "id": {
                                         "type": "string"
                                     },
-                                    "email": {
+                                    "question": {
                                         "type": "string"
                                     },
-                                    "mobile": {
+                                    "answer": {
                                         "type": "string"
                                     },
-                                    "userType": {
+                                    "category": {
                                         "type": "string"
                                     },
-                                    "userStatus": {
+                                    "subCatagory": {
                                         "type": "string"
                                     },
-                                    "password": {
+                                    "isPrivate": {
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "isBookmarked": {
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "code": {
                                         "type": "string"
                                     },
-                                    "dateOfBirth": {
+                                    "createdAt": {
                                         "type": "string",
-                                        "format": "date"
+                                        "format": "date-time"
                                     },
-                                    "city": {
-                                        "type": "string"
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
                                     }
                                 }
                             }
@@ -53,36 +209,136 @@
                 }
             }
         },
-        "/api/questions/get": {
-            "get": {
-                "summary": "Get all questions",
+        "/api/questions/update": {
+            "patch": {
+                "summary": "update questions",
                 "tags": [
                     "Questions"
                 ],
-                "responses": {
-                    "200": {
-                        "description": "Successfully retrieved list of questions",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "name": {
-                                                "type": "string"
-                                            },
-                                            "email": {
-                                                "type": "string"
-                                            }
-                                        }
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "question": {
+                                        "type": "string"
+                                    },
+                                    "answer": {
+                                        "type": "string"
+                                    },
+                                    "category": {
+                                        "type": "string"
+                                    },
+                                    "subCatagory": {
+                                        "type": "string"
+                                    },
+                                    "isPrivate": {
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "isBookmarked": {
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
                                     }
                                 }
                             }
                         }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully"
                     },
                     "400": {
-                        "description": "Error retrieving users"
+                        "description": "Error creating user"
+                    }
+                }
+            }
+        },
+        "/api/questions/delete": {
+            "delete": {
+                "summary": "delete questions",
+                "tags": [
+                    "Questions"
+                ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "question": {
+                                        "type": "string"
+                                    },
+                                    "answer": {
+                                        "type": "string"
+                                    },
+                                    "category": {
+                                        "type": "string"
+                                    },
+                                    "subCatagory": {
+                                        "type": "string"
+                                    },
+                                    "isPrivate": {
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "isBookmarked": {
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "code": {
+                                        "type": "string"
+                                    },
+                                    "createdAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created successfully"
+                    },
+                    "400": {
+                        "description": "Error creating user"
                     }
                 }
             }

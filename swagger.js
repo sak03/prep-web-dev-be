@@ -11,7 +11,16 @@ const swaggerDefinition = {
         {
             url: 'http://localhost:8000',
         }
-    ]
+    ],
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
 };
 
 const loadSwaggerDocs = () => {
